@@ -376,3 +376,61 @@ footer {
   font-size: 13px;
   line-height: 1.4;
 }
+
+/* =========================
+   ZILA CHATBOT FINAL FIX
+   ========================= */
+
+#chatBody {
+  background: #ffffff;
+  padding: 12px;
+  overflow-y: auto;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* BOT MESSAGE */
+.chat-bot {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+/* AVATAR BOT (IMAGE) */
+.chat-bot img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 6px rgba(0,0,0,0.15);
+  flex-shrink: 0;
+}
+
+/* BUBBLE BOT */
+.chat-bot span {
+  background: #f1f5f9;
+  color: #0f172a;
+  padding: 10px 12px;
+  border-radius: 12px 12px 12px 4px;
+  max-width: 220px;
+  font-size: 13px;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+/* USER MESSAGE */
+.chat-user {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 12px;
+}
+
+.chat-user span {
+  background: #2563eb;
+  color: #ffffff;
+  padding: 10px 12px;
+  border-radius: 12px 12px 4px 12px;
+  max-width: 220px;
+  font-size: 13px;
+  line-height: 1.5;
+}
