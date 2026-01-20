@@ -1,3 +1,8 @@
+html, body {
+  background: #02040a;
+  overflow-x: hidden;
+}
+
 * {
   margin: 0;
   padding: 0;
