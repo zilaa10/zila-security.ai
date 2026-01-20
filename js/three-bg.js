@@ -1,10 +1,10 @@
 const canvas = document.getElementById("bg");
 
-/* ================= SCENE ================= */
+/* SCENE */
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x02040a);
 
-/* ================= CAMERA ================= */
+/* CAMERA */
 const camera = new THREE.PerspectiveCamera(
   60,
   window.innerWidth / window.innerHeight,
@@ -13,24 +13,18 @@ const camera = new THREE.PerspectiveCamera(
 );
 camera.position.z = 45;
 
-/* ================= RENDERER ================= */
-const renderer = new THREE.WebGLRenderer({
-  canvas,
-  antialias: true
-});
+/* RENDERER */
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-/* ================= LIGHTING ================= */
+/* LIGHT */
 scene.add(new THREE.AmbientLight(0x1e40af, 0.6));
+const light = new THREE.PointLight(0x3b82f6, 1.2);
+light.position.set(30, 30, 30);
+scene.add(light);
 
-const mainLight = new THREE.PointLight(0x3b82f6, 1.2);
-mainLight.position.set(30, 30, 30);
-scene.add(mainLight);
-
-/* ======================================================
-   🔗 FLOATING BLOCKCHAIN BLOCKS
-====================================================== */
+/* BLOCKCHAIN BLOCKS */
 const blocks = [];
 const blockGeo = new THREE.BoxGeometry(3, 3, 3);
 const blockMat = new THREE.MeshStandardMaterial({
@@ -42,19 +36,17 @@ const blockMat = new THREE.MeshStandardMaterial({
 });
 
 for (let i = 0; i < 18; i++) {
-  const block = new THREE.Mesh(blockGeo, blockMat);
-  block.position.set(
+  const b = new THREE.Mesh(blockGeo, blockMat);
+  b.position.set(
     (Math.random() - 0.5) * 60,
     (Math.random() - 0.5) * 40,
     (Math.random() - 0.5) * 30
   );
-  scene.add(block);
-  blocks.push(block);
+  scene.add(b);
+  blocks.push(b);
 }
 
-/* ======================================================
-   🔗 SECURE CONNECTION LINES (BLOCK → BLOCK)
-====================================================== */
+/* CONNECTION LINES */
 blocks.forEach((b, i) => {
   if (i < blocks.length - 1) {
     const geo = new THREE.BufferGeometry().setFromPoints([
@@ -73,44 +65,40 @@ blocks.forEach((b, i) => {
   }
 });
 
-/* ======================================================
-   🔒 3D SHIELD / LOCK (CENTER CORE)
-====================================================== */
-const shieldGeo = new THREE.TorusGeometry(6, 1.4, 16, 100);
-const shieldMat = new THREE.MeshStandardMaterial({
-  color: 0x1e3a8a,
-  metalness: 0.9,
-  roughness: 0.15,
-  emissive: 0x3b82f6,
-  emissiveIntensity: 0.6
-});
-const shield = new THREE.Mesh(shieldGeo, shieldMat);
+/* SHIELD & LOCK */
+const shield = new THREE.Mesh(
+  new THREE.TorusGeometry(6, 1.4, 16, 100),
+  new THREE.MeshStandardMaterial({
+    color: 0x1e3a8a,
+    metalness: 0.9,
+    roughness: 0.15,
+    emissive: 0x3b82f6,
+    emissiveIntensity: 0.6
+  })
+);
 scene.add(shield);
 
-/* Lock core */
-const lockGeo = new THREE.CylinderGeometry(1.3, 1.3, 2.5, 32);
-const lockMat = new THREE.MeshStandardMaterial({
-  color: 0x020617,
-  emissive: 0x60a5fa,
-  emissiveIntensity: 0.8
-});
-const lock = new THREE.Mesh(lockGeo, lockMat);
+const lock = new THREE.Mesh(
+  new THREE.CylinderGeometry(1.3, 1.3, 2.5, 32),
+  new THREE.MeshStandardMaterial({
+    color: 0x020617,
+    emissive: 0x60a5fa,
+    emissiveIntensity: 0.8
+  })
+);
 scene.add(lock);
 
-/* ======================================================
-   🌌 PARTICLE NETWORK (SECURITY LAYER)
-====================================================== */
-const particlesGeo = new THREE.BufferGeometry();
-const count = 900;
-const positions = new Float32Array(count * 3);
-
-for (let i = 0; i < count * 3; i++) {
-  positions[i] = (Math.random() - 0.5) * 200;
+/* PARTICLES */
+const pGeo = new THREE.BufferGeometry();
+const pCount = 900;
+const pos = new Float32Array(pCount * 3);
+for (let i = 0; i < pos.length; i++) {
+  pos[i] = (Math.random() - 0.5) * 200;
 }
-particlesGeo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+pGeo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
 
 const particles = new THREE.Points(
-  particlesGeo,
+  pGeo,
   new THREE.PointsMaterial({
     color: 0x93c5fd,
     size: 0.7,
@@ -120,13 +108,11 @@ const particles = new THREE.Points(
 );
 scene.add(particles);
 
-/* ======================================================
-   🧠 AI-SECURITY LAYER (PULSE RINGS)
-====================================================== */
-const aiRings = [];
+/* AI RINGS */
+const rings = [];
 for (let i = 0; i < 3; i++) {
-  const ring = new THREE.Mesh(
-    new THREE.RingGeometry(8 + i * 3, 8.2 + i * 3, 64),
+  const r = new THREE.Mesh(
+    new THREE.RingGeometry(8 + i * 3, 8.3 + i * 3, 64),
     new THREE.MeshBasicMaterial({
       color: 0x3b82f6,
       transparent: true,
@@ -134,15 +120,14 @@ for (let i = 0; i < 3; i++) {
       side: THREE.DoubleSide
     })
   );
-  ring.rotation.x = Math.PI / 2;
-  scene.add(ring);
-  aiRings.push(ring);
+  r.rotation.x = Math.PI / 2;
+  scene.add(r);
+  rings.push(r);
 }
 
-/* ================= ANIMATION ================= */
+/* ANIMATE */
 function animate() {
   requestAnimationFrame(animate);
-
   const t = Date.now() * 0.001;
 
   blocks.forEach((b, i) => {
@@ -154,7 +139,7 @@ function animate() {
   shield.rotation.z += 0.002;
   lock.rotation.y -= 0.003;
 
-  aiRings.forEach((r, i) => {
+  rings.forEach((r, i) => {
     r.material.opacity = 0.15 + Math.sin(t * 2 + i) * 0.15;
   });
 
@@ -164,7 +149,7 @@ function animate() {
 }
 animate();
 
-/* ================= RESIZE ================= */
+/* RESIZE */
 window.addEventListener("resize", () => {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
