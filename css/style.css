@@ -141,3 +141,29 @@ footer {
   border-top: 1px solid rgba(255,255,255,0.1);
   background: transparent;
 }
+
+/* =========================
+   CHATBOT AVATAR
+   ========================= */
+
+.chat-bot {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.chat-bot::before {
+  content: "";
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: url("/assets/zila.png") center / cover no-repeat;
+  flex-shrink: 0;
+  box-shadow: 0 0 10px rgba(37,99,235,0.4);
+}
+
+.chat-user {
+  text-align: right;
+  margin-bottom: 12px;
+}
