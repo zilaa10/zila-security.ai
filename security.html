@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ZILA Security Architecture</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Three.js -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
+
+  <script defer src="js/three-bg.js"></script>
+  <script defer src="js/lang.js"></script>
+  <script defer src="js/chatbot.js"></script>
+  <script defer src="js/script.js"></script>
+</head>
+<body>
+
+<canvas id="bg"></canvas>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="logo">ZILA</div>
+  <ul>
+    <li><a href="index.html" data-lang="home">Home</a></li>
+    <li><a href="security.html" class="active" data-lang="security">Security</a></li>
+    <li><a href="ai.html">ZILA-AI</a></li>
+  </ul>
+  <select id="langSwitcher">
+    <option value="en">EN</option>
+    <option value="id">ID</option>
+  </select>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <h1>Blockchain Security Architecture</h1>
+  <p>
+    A deep dive into ZILA’s military-grade blockchain protection system.
+  </p>
+</header>
+
+<!-- SECTION 1 -->
+<section class="explain">
+  <div class="explain-text">
+    <h2>Multi-Layer Security Design</h2>
+    <p>
+      ZILA blockchain security is built with multiple independent layers.
+      Even if one layer is attacked, the remaining layers maintain system integrity.
+    </p>
+  </div>
+  <img src="assets/explain-1.png" alt="Multi-Layer Security">
+</section>
+
+<!-- SECTION 2 -->
+<section class="explain dark">
+  <img src="assets/explain-2.png" alt="Encrypted Blockchain Flow">
+  <div class="explain-text">
+    <h2>Encrypted Data & Transaction Flow</h2>
+    <p>
+      All transactions are encrypted end-to-end using military-grade
+      cryptographic algorithms before being added to the blockchain.
+    </p>
+  </div>
+</section>
+
+<!-- SECTION 3 -->
+<section class="explain">
+  <div class="explain-text">
+    <h2>Decentralized Defense Mechanism</h2>
+    <p>
+      With no single point of failure, ZILA’s decentralized security model
+      ensures maximum resistance against attacks and network disruptions.
+    </p>
+  </div>
+  <img src="assets/explain-3.png" alt="Decentralized Security">
+</section>
+
+<footer>
+  © 2026 ZILA Token — Security Architecture
+</footer>
+
+<!-- CHATBOT -->
+<div id="chatbot">
+  <div id="chatHeader">ZILA-AI</div>
+  <div id="chatBody"></div>
+  <input id="chatInput" placeholder="Ask about ZILA security..." />
+</div>
+
+</body>
+</html>
