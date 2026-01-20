@@ -75,3 +75,60 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+/* =========================
+   CHAT SEND BUTTON (PAPER PLANE)
+   ========================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+  const chatbot = document.getElementById("chatbot");
+  const input = document.getElementById("chatInput");
+  const body = document.getElementById("chatBody");
+
+  if (!chatbot || !input || !body) return;
+
+  // Create send button
+  const send = document.createElement("div");
+  send.id = "chatSend";
+  send.innerHTML = "✈️";
+  document.body.appendChild(send);
+
+  function sendMessage() {
+    const text = input.value.trim();
+    if (!text) return;
+
+    const userMsg = document.createElement("div");
+    userMsg.className = "chat-user";
+    userMsg.textContent = text;
+    body.appendChild(userMsg);
+
+    input.value = "";
+    body.scrollTop = body.scrollHeight;
+
+    setTimeout(() => {
+      const replies = [
+        "ZILA Token is protected by military-grade encryption.",
+        "Each ZILA block is securely linked to prevent tampering.",
+        "AI-driven security continuously monitors the network.",
+        "ZILA uses a multi-layer blockchain security architecture.",
+        "Decentralization ensures there is no single point of failure."
+      ];
+
+      const botMsg = document.createElement("div");
+      botMsg.className = "chat-bot";
+      botMsg.textContent =
+        replies[Math.floor(Math.random() * replies.length)];
+
+      body.appendChild(botMsg);
+      body.scrollTop = body.scrollHeight;
+    }, 600);
+  }
+
+  // Click send
+  send.addEventListener("click", sendMessage);
+
+  // Enter key
+  input.addEventListener("keydown", e => {
+    if (e.key === "Enter") sendMessage();
+  });
+});
