@@ -1,113 +1,105 @@
+// ===============================
+// ZILA THREE.JS BACKGROUND
+// ===============================
+
 const canvas = document.getElementById("bg");
-
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x02040a);
 
+// CAMERA
 const camera = new THREE.PerspectiveCamera(
-  55,
+  75,
   window.innerWidth / window.innerHeight,
   0.1,
-  800
+  1000
 );
-camera.position.z = 42;
+camera.position.z = 60;
 
+// RENDERER
 const renderer = new THREE.WebGLRenderer({
   canvas,
-  antialias: window.devicePixelRatio < 2
+  alpha: true,
+  antialias: false,
+  powerPreference: "low-power"
 });
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+
 renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
 
-/* LIGHT */
-scene.add(new THREE.AmbientLight(0x1e3a8a, 0.6));
-const light = new THREE.PointLight(0x3b82f6, 1);
-light.position.set(25, 25, 25);
-scene.add(light);
+// PARTICLES
+const particleCount = window.innerWidth < 768 ? 150 : 300;
+const geometry = new THREE.BufferGeometry();
+const positions = [];
 
-/* LOGO ZILA SHIELD */
-const textureLoader = new THREE.TextureLoader();
-const logoTexture = textureLoader.load("assets/zila-logo.png");
+for (let i = 0; i < particleCount; i++) {
+  positions.push(
+    (Math.random() - 0.5) * 400,
+    (Math.random() - 0.5) * 400,
+    (Math.random() - 0.5) * 400
+  );
+}
 
-const shield = new THREE.Mesh(
-  new THREE.CircleGeometry(6, 64),
-  new THREE.MeshStandardMaterial({
-    map: logoTexture,
-    transparent: true,
-    emissive: 0x2563eb,
-    emissiveIntensity: 0.4
-  })
+geometry.setAttribute(
+  "position",
+  new THREE.Float32BufferAttribute(positions, 3)
 );
-scene.add(shield);
 
-/* BLOCKCHAIN CUBES */
-const blocks = [];
-const geo = new THREE.BoxGeometry(2.6, 2.6, 2.6);
-const mat = new THREE.MeshStandardMaterial({
-  color: 0x0b1d33,
-  metalness: 0.6,
-  roughness: 0.35
+const material = new THREE.PointsMaterial({
+  color: 0x4f7cff,
+  size: 1.2,
+  transparent: true,
+  opacity: 0.6
 });
 
-for (let i = 0; i < 12; i++) {
-  const b = new THREE.Mesh(geo, mat);
-  b.position.set(
-    (Math.random() - 0.5) * 50,
-    (Math.random() - 0.5) * 30,
-    (Math.random() - 0.5) * 20
-  );
-  scene.add(b);
-  blocks.push(b);
-}
-
-/* PARTICLES */
-const pGeo = new THREE.BufferGeometry();
-const pCount = 500;
-const pos = new Float32Array(pCount * 3);
-for (let i = 0; i < pos.length; i++) {
-  pos[i] = (Math.random() - 0.5) * 150;
-}
-pGeo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
-
-const particles = new THREE.Points(
-  pGeo,
-  new THREE.PointsMaterial({
-    size: 0.6,
-    color: 0x93c5fd,
-    transparent: true,
-    opacity: 0.3
-  })
-);
+const particles = new THREE.Points(geometry, material);
 scene.add(particles);
 
-/* AI RINGS */
-const rings = [];
-for (let i = 0; i < 2; i++) {
-  const r = new THREE.Mesh(
-    new THREE.RingGeometry(9 + i * 4, 9.4 + i * 4, 64),
-    new THREE.MeshBasicMaterial({
-      color: 0x3b82f6,
-      transparent: true,
-      opacity: 0.25,
-      side: THREE.DoubleSide
-    })
+// FLOATING SECURITY CUBES (BLOCKCHAIN)
+const cubes = [];
+const cubeGeometry = new THREE.BoxGeometry(3, 3, 3);
+const cubeMaterial = new THREE.MeshStandardMaterial({
+  color: 0x1e40af,
+  metalness: 0.7,
+  roughness: 0.3
+});
+
+for (let i = 0; i < 8; i++) {
+  const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+  cube.position.set(
+    (Math.random() - 0.5) * 80,
+    (Math.random() - 0.5) * 80,
+    (Math.random() - 0.5) * 80
   );
-  r.rotation.x = Math.PI / 2;
-  scene.add(r);
-  rings.push(r);
+  cubes.push(cube);
+  scene.add(cube);
 }
 
-/* ANIMATE */
+// LIGHTING (MILITARY / SPACE STYLE)
+const ambientLight = new THREE.AmbientLight(0x1e3a8a, 0.6);
+scene.add(ambientLight);
+
+const pointLight = new THREE.PointLight(0x3b82f6, 1);
+pointLight.position.set(20, 20, 20);
+scene.add(pointLight);
+
+// ANIMATION LOOP
 function animate() {
   requestAnimationFrame(animate);
-  shield.rotation.z += 0.0018;
-  particles.rotation.y += 0.0004;
-  rings.forEach((r, i) => {
-    r.material.opacity = 0.15 + Math.sin(Date.now() * 0.002 + i) * 0.1;
+
+  particles.rotation.y += 0.0005;
+  particles.rotation.x += 0.0002;
+
+  cubes.forEach((cube, i) => {
+    cube.rotation.x += 0.002;
+    cube.rotation.y += 0.003;
+    cube.position.y += Math.sin(Date.now() * 0.001 + i) * 0.01;
   });
+
   renderer.render(scene, camera);
 }
+
 animate();
 
+// RESIZE
 window.addEventListener("resize", () => {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
