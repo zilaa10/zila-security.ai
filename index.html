@@ -5,71 +5,81 @@
   <title>ZILA Blockchain Security</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="css/style.css">
 
-  <!-- Three.js -->
   <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
 
-  <!-- Background 3D -->
   <script defer src="js/three-bg.js"></script>
+  <script defer src="js/lang.js"></script>
+  <script defer src="js/chatbot.js"></script>
   <script defer src="js/script.js"></script>
 </head>
 <body>
 
-  <!-- 3D BACKGROUND -->
-  <canvas id="bg"></canvas>
+<canvas id="bg"></canvas>
 
-  <!-- HERO -->
-  <header class="hero">
-    <div class="hero-content">
-      <h1>Military-Grade Blockchain Security</h1>
-      <p>
-        ZILA Token is secured by advanced encryption,
-        AI-driven defense layers, and decentralized protection protocols.
-      </p>
-    </div>
-  </header>
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="logo">ZILA</div>
+  <ul>
+    <li><a href="index.html" data-lang="home">Home</a></li>
+    <li><a href="security.html" data-lang="security">Security</a></li>
+    <li><a href="ai.html">ZILA-AI</a></li>
+  </ul>
+  <select id="langSwitcher">
+    <option value="en">EN</option>
+    <option value="id">ID</option>
+  </select>
+</nav>
 
-  <!-- EXPLANATION 1 -->
-  <section class="explain">
-    <div class="explain-text">
-      <h2>Advanced Encryption Architecture</h2>
-      <p>
-        ZILA blockchain uses military-grade cryptographic algorithms
-        to protect transactions, data integrity, and user assets.
-      </p>
-    </div>
-    <img src="assets/explain-1.png" alt="Blockchain Encryption">
-  </section>
+<!-- HERO -->
+<header class="hero">
+  <h1 data-lang="heroTitle">Military-Grade Blockchain Security</h1>
+  <p data-lang="heroDesc">
+    Advanced encryption, AI-powered protection, and decentralized defense.
+  </p>
+</header>
 
-  <!-- EXPLANATION 2 -->
-  <section class="explain dark">
-    <img src="assets/explain-2.png" alt="Secure Block Connection">
-    <div class="explain-text">
-      <h2>Secure Block-to-Block Validation</h2>
-      <p>
-        Each blockchain block is securely linked and validated,
-        creating an unbreakable chain that resists manipulation and attacks.
-      </p>
-    </div>
-  </section>
+<!-- EXPLANATION SECTIONS -->
+<section class="explain">
+  <div>
+    <h2 data-lang="sec1Title">Advanced Encryption</h2>
+    <p data-lang="sec1Desc">
+      ZILA uses military-grade cryptography to secure assets and transactions.
+    </p>
+  </div>
+  <img src="assets/explain-1.png">
+</section>
 
-  <!-- EXPLANATION 3 -->
-  <section class="explain">
-    <div class="explain-text">
-      <h2>AI-Powered Security Layer</h2>
-      <p>
-        Artificial Intelligence continuously monitors the network,
-        detects threats in real time, and strengthens blockchain defenses.
-      </p>
-    </div>
-    <img src="assets/explain-3.png" alt="AI Blockchain Security">
-  </section>
+<section class="explain dark">
+  <img src="assets/explain-2.png">
+  <div>
+    <h2 data-lang="sec2Title">Secure Block Validation</h2>
+    <p data-lang="sec2Desc">
+      Each block reinforces the next through cryptographic verification.
+    </p>
+  </div>
+</section>
 
-  <!-- FOOTER -->
-  <footer>
-    © 2026 ZILA Token — Secure by Design
-  </footer>
+<section class="explain">
+  <div>
+    <h2 data-lang="sec3Title">AI Security Layer</h2>
+    <p data-lang="sec3Desc">
+      AI monitors threats in real-time and protects the network automatically.
+    </p>
+  </div>
+  <img src="assets/explain-3.png">
+</section>
+
+<footer>© 2026 ZILA Token</footer>
+
+<!-- CHATBOT -->
+<div id="chatbot">
+  <div id="chatHeader">ZILA-AI</div>
+  <div id="chatBody"></div>
+  <input id="chatInput" placeholder="Ask ZILA-AI..." />
+</div>
 
 </body>
 </html>
