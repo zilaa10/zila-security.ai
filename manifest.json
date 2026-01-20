@@ -1,0 +1,13 @@
+{
+  "name": "ZILA Security",
+  "short_name": "ZILA",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#02040a",
+  "theme_color": "#1e3a8a",
+  "icons": [{
+    "src": "assets/zila-logo.png",
+    "sizes": "512x512",
+    "type": "image/png"
+  }]
+}
