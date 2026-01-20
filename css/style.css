@@ -130,3 +130,34 @@ footer {
   width: 100vw;
   height: 100vh;
 }
+
+.visual-section {
+  padding: 100px 10%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.visual-section img {
+  width: 100%;
+  border-radius: 18px;
+  box-shadow: 0 0 40px rgba(59,130,246,0.25);
+}
+
+.visual-text h2 {
+  font-size: 2.4rem;
+  margin-bottom: 20px;
+}
+
+.visual-text p {
+  color: #b9c6ff;
+  font-size: 1.05rem;
+}
+
+@media(max-width: 900px) {
+  .visual-section {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
