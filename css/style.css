@@ -88,3 +88,18 @@ body {
   background: #020617;
   color: white;
 }
+
+footer {
+  width: 100%;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;   /* HORIZONTAL CENTER */
+  align-items: center;       /* VERTICAL CENTER */
+  text-align: center;
+
+  font-size: 0.9rem;
+  color: #9bb4ff;
+
+  border-top: 1px solid rgba(255,255,255,0.1);
+  background: transparent;
+}
