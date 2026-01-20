@@ -167,3 +167,32 @@ footer {
   text-align: right;
   margin-bottom: 12px;
 }
+
+/* =========================
+   CHAT INPUT WITH SEND ICON
+   ========================= */
+
+#chatInput {
+  padding-right: 44px;
+}
+
+#chatSend {
+  position: absolute;
+  right: 28px;
+  bottom: 102px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #2563eb;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+  box-shadow: 0 4px 12px rgba(37,99,235,0.4);
+}
+
+#chatSend:hover {
+  background: #1e40af;
+}
